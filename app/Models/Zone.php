@@ -13,6 +13,7 @@ use MatanYadaev\EloquentSpatial\Objects\Polygon;
 use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
 use Illuminate\Database\Eloquent\Builder;
 use App\Scopes\ZoneScope;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Zone
@@ -148,5 +149,10 @@ class Zone extends Model
     public static function query(): Builder
     {
         return parent::query();
+    }
+    public function setCoordinatesAttribute($value)
+    {
+        // If $value is a Polygon, insert raw SQL:
+        $this->attributes['coordinates'] = DB::raw("ST_GeomFromText('{$value->toWkt()}')");
     }
 }
