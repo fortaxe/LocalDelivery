@@ -150,9 +150,4 @@ class Zone extends Model
     {
         return parent::query();
     }
-    public function setCoordinatesAttribute($value)
-    {
-        // If $value is a Polygon, insert raw SQL:
-        $this->attributes['coordinates'] = DB::raw("ST_GeomFromText('{$value->toWkt()}')");
-    }
 }
