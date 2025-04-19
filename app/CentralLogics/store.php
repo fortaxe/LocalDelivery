@@ -41,7 +41,7 @@ class StoreLogic
                     return  $query->whereIn('zone_id', json_decode($zone_id,true));
                 });
         } else {
-            $query = $query->whereIn('zone_id', json_decode($zone_id,true));
+            $query = $query->whereIn('zone_id', (array) json_decode($zone_id, true));
         }
 
             if($all_stores_default_status != '1') {
