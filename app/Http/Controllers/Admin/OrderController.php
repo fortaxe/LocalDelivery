@@ -37,7 +37,6 @@ use Rap2hpoutre\FastExcel\FastExcel;
 use App\Exports\StoreOrderlistExport;
 use App\Models\OrderPayment;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 
@@ -243,7 +242,6 @@ class OrderController extends Controller
                     $deliveryMen = DeliveryMan::where('zone_id', '=', NULL)->where('vehicle_id',$order->dm_vehicle_id)->active()->get();
                 }
             }
-            Log::info('deliveryMen :'.json_encode($deliveryMen));
             $category = $request->query('category_id', 0);
             // $sub_category = $request->query('sub_category', 0);
             $categories = Category::active()->get();
@@ -274,7 +272,6 @@ class OrderController extends Controller
             }
 
             $deliveryMen = Helpers::deliverymen_list_formatting($deliveryMen);
-            Log::info('deliveryMen2 :'.json_encode($deliveryMen));
             return view('admin-views.order.order-view', compact('order', 'deliveryMen', 'categories', 'products', 'category', 'keyword', 'editing'));
         } else {
             Toastr::info(translate('messages.no_more_orders'));

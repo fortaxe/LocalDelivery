@@ -13,7 +13,6 @@ use MatanYadaev\EloquentSpatial\Objects\Polygon;
 use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
 use Illuminate\Database\Eloquent\Builder;
 use App\Scopes\ZoneScope;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Class Zone

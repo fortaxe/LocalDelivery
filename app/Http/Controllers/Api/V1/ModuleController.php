@@ -42,7 +42,6 @@ class ModuleController extends Controller
             ->when($request->zone_id, function ($query) use ($request) {
                 $query->whereHas('zones', function ($query) use ($request) {
                     $query->where('zone_id', $request->zone_id);
-                
                 })->notParcel();
             })
             ->active()
